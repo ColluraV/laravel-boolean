@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('cocktails', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->json('ingredients');
+            $table->text('thumb');
+            $table->string('category');
+            $table->text('instruction')->nullable();
+            $table->boolean('alcool')->nullable();
             $table->timestamps();
         });
     }
