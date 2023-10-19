@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use GuzzleHttp\Client;
@@ -15,12 +16,12 @@ class CocktailsTableSeeder extends Seeder
     public function run(): void
     {
 
-        for ($i=0; $i <= 10; $i++) { 
-          
-            $client =new Client();
-            $response= $client->get('www.thecocktaildb.com/api/json/v1/1/random.php');
-    
-            $data = json_decode($response->getBody(),true);
+        for ($i = 0; $i <= 10; $i++) {
+
+            $client = new Client();
+            $response = $client->get('www.thecocktaildb.com/api/json/v1/1/random.php');
+
+            $data = json_decode($response->getBody(), true);
 
 
             /*Cocktail::create([
@@ -46,17 +47,17 @@ class CocktailsTableSeeder extends Seeder
                 "thumb"=>$data["strDrinkThumb"],
                 "category"=>$data["strCategory"],
                 "instructions"=>$data["strInstructionsIT"],
-               ]);*/
+                ]);*/
 
-            $newCocktail=new Cocktail();
+            $newCocktail = new Cocktail();
 
-            $newCocktail->name=$data["drinks"][0]["strDrink"];
-            $newCocktail->thumb=$data["drinks"][0]["strDrinkThumb"];
-            $newCocktail->category=$data["drinks"][0]["strCategory"];
-            $newCocktail->instructions=$data["drinks"][0]["strInstructionsIT"];
-            
+            $newCocktail->name = $data["drinks"][0]["strDrink"];
+            $newCocktail->thumb = $data["drinks"][0]["strDrinkThumb"];
+            $newCocktail->category = $data["drinks"][0]["strCategory"];
+            $newCocktail->instructions = $data["drinks"][0]["strInstructionsIT"];
 
-            $newCocktail->ingredients=json_encode([
+
+            $newCocktail->ingredients = json_encode([
                 ($data['drinks'][0]["strIngredient1"]),
                 ($data['drinks'][0]["strIngredient2"]),
                 ($data['drinks'][0]["strIngredient3"]),
@@ -75,10 +76,7 @@ class CocktailsTableSeeder extends Seeder
             ]);
 
             $newCocktail->save();
-
-
-            }
+        }
     }
 }
 //www.thecocktaildb.com/api/json/v1/1/random.php
-
