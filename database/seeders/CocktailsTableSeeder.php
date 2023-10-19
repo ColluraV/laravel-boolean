@@ -22,32 +22,6 @@ class CocktailsTableSeeder extends Seeder
     
             $data = json_decode($response->getBody(),true);
 
-
-            /*Cocktail::create([
-
-                "name"=>("strDrink"),
-                "ingredients"=>[
-                    $data["strIngredient1"],
-                    $data["strIngredient2"],
-                    $data["strIngredient3"],
-                    $data["strIngredient4"],
-                    $data["strIngredient5"],
-                    $data["strIngredient6"],
-                    $data["strIngredient7"],
-                    $data["strIngredient8"],
-                    $data["strIngredient9"],
-                    $data["strIngredient10"],
-                    $data["strIngredient11"],
-                    $data["strIngredient12"],
-                    $data["strIngredient13"],
-                    $data["strIngredient14"],
-                    $data["strIngredient15"],
-                ],
-                "thumb"=>$data["strDrinkThumb"],
-                "category"=>$data["strCategory"],
-                "instructions"=>$data["strInstructionsIT"],
-               ]);*/
-
             $newCocktail=new Cocktail();
 
             $newCocktail->name=$data["drinks"][0]["strDrink"];
