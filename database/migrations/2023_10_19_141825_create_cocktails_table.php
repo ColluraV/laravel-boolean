@@ -17,8 +17,7 @@ return new class extends Migration
             $table->json('ingredients');
             $table->text('thumb');
             $table->string('category');
-            $table->text('instruction')->nullable();
-            $table->boolean('alcool')->nullable();
+            $table->text('instructions')->nullable();
             $table->timestamps();
         });
     }
