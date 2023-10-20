@@ -31,23 +31,22 @@ class CocktailsTableSeeder extends Seeder
             $newCocktail->instructions = $data["drinks"][0]["strInstructionsIT"];
 
 
-            $newCocktail->ingredients = json_encode([
-                ($data['drinks'][0]["strIngredient1"]),
-                ($data['drinks'][0]["strIngredient2"]),
-                ($data['drinks'][0]["strIngredient3"]),
-                ($data['drinks'][0]["strIngredient4"]),
-                ($data['drinks'][0]["strIngredient5"]),
-                ($data['drinks'][0]["strIngredient6"]),
-                ($data['drinks'][0]["strIngredient7"]),
-                ($data['drinks'][0]["strIngredient8"]),
-                ($data['drinks'][0]["strIngredient9"]),
-                ($data['drinks'][0]["strIngredient10"]),
-                ($data['drinks'][0]["strIngredient11"]),
-                ($data['drinks'][0]["strIngredient12"]),
-                ($data['drinks'][0]["strIngredient13"]),
-                ($data['drinks'][0]["strIngredient14"]),
-                ($data['drinks'][0]["strIngredient15"]),
-            ]);
+            $ingredients = [];
+            $ingredientCounter = 1;
+
+            do {
+                $ingredientKey = 'strIngredient' . $ingredientCounter;
+                $ingredient = $data['drinks'][0][$ingredientKey] ?? null;
+
+                if($ingredient){
+                    $ingredients [] = $ingredient;
+                }
+
+                $ingredientCounter++;
+
+            } while ($ingredient != null);
+
+            $newCocktail->ingredients = json_encode($ingredients);
 
             $newCocktail->save();
         }
