@@ -10,8 +10,16 @@ use function Laravel\Prompts\error;
 
 class CocktailController extends Controller
 {
-    public function index() {
-        $cocktails = Cocktail::all();
+    public function index(Request $request) {
+        $category = $request->input('category');
+
+        $query = Cocktail::query();
+
+        if ($category) {
+            $query->where('category', 'LIKE', "%$category%");
+        } 
+
+        $cocktails = $query->get();
 
         return response()->json($cocktails);
     }
