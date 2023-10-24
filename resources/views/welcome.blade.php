@@ -6,7 +6,7 @@
 
         <title>Laravel</title>
 
-
+<p>simo dio cane</p>
     </head>
     <body class="antialiased">
 
